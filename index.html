@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog Website</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+       <div class="header">
+            <div id="head">
+                <img id="img1" src="./1.png" alt="pic" >
+                <h1>My Blog</h1>
+            </div>
+            <div id="link">
+                
+                <nav>
+                    <ul>
+                        <img src="./2.png" alt="" height="35px" width="40px" style="mix-blend-mode: multiply;">
+                        <li id="1"><a href="#newPost">Write Post</a></li>
+                        <img src="./3.png" alt="" height="40px" width="40px" style="mix-blend-mode: multiply;">
+                        <li id="2"><a href="#drafts">Save Drafts</a></li>
+                        <img src="./4.png" alt="" height="38px" width="43px" style="mix-blend-mode: multiply;">
+                        <li id="3"><a href="#ideas">Ideas</a></li>
+                    </ul>
+                </nav>
+                <div id="buttons">
+                    <button onclick="openModal('login')">Log In</button>
+                    <button onclick="openModal('signup')">Sign Up</button>
+                </div>
+            </div>
+       </div>
+    </header>
+
+    <!-- login and signup button -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="form-container">
+                <h2>Log In </h2>
+                <form>
+                    <label for="username">Username :</label><br>
+                    <input type="text" id="username" name="username" required><br><br>
+                    <label for="password">Password :</label><br>
+                    <input type="password" id="password" name="password" required><br><br>
+                    <button type="submit">Log In</button>
+                </form>
+                <p>Don't have an account? <a href="javascript:void(0)" onclick="showSignup()">Sign Up</a></p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signupForm" class="form-container" style="display: none;">
+                <h2>Sign Up</h2>
+                <form>
+                    <label for="newUsername">Username :</label><br>
+                    <input type="text" id="newUsername" name="newUsername" required><br><br>
+                    <label for="newEmail">Email :</label><br>
+                    <input type="email" id="newEmail" name="newEmail" required><br><br>
+                    <label for="newPassword">Password :</label><br>
+                    <input type="password" id="newPassword" name="newPassword" required><br><br>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <p>Already have an account? <a href="javascript:void(0)" onclick="showLogin()">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="topic">
+        <article>
+            <div id="c1" class="content" data-article="1">
+                <div>
+                    <img class="pic" src="./5.webp" alt="">
+                </div>
+                <div class="story" >
+                    <h2>How To Wake Up at 5 A.M. Every Day</h2>
+                    <p>An unconventional and compassionate guide to becoming an early bird</p>
+                </div>
+            </div>
+        </article>
+    
+        <article>
+            <div id="2" class="content" data-article="2">
+                <div>
+                    <img class="pic" src="./6.webp" alt="">
+                </div>
+                <div class="story" >
+                    <h2 >What Breaks & What Just Bends</h2>
+                    <p>The quiet rebellion of forgiving myself</p>
+                </div>
+            </div>
+        </article>
+    
+        <article>
+            <div id="3" class="content" data-article="3">
+                <div>
+                    <img class="pic" src="./7.webp" alt="">
+                </div>
+                <div class="story" >
+                    <h2 >Mastering a New Language</h2>
+                    <p>Lessons in fluency from a multilingual learner</p>
+                </div>
+            </div>
+        </article>
+    
+        <article>
+            <div id="4" class="content" data-article="4">
+                <div>
+                    <img class="pic" src="./8.webp" alt="">
+                </div>
+                <div class="story" >
+                    <h2 >An Introduction to Existentialism!</h2>
+                    <p>Confronting Freedom, Choice, and Authenticity</p>
+                </div>
+            </div>
+        </article>
+    
+        <article>
+            <div id="5" class="content" data-article="5">
+                <div>
+                    <img class="pic" src="./9.webp" alt="">
+                </div>
+                <div class="story" >
+                    <h2 >That’s Not A Story</h2>
+                    <p>How to turn your anecdote into a proper story</p>
+                </div>
+            </div>
+        </article>
+    </div>
+
+
+
+    <main>
+        <!-- New Post Section -->
+        <section id="newPost" class="hidden">
+            <h2>Create New Post</h2>
+            <div class="editor-container">
+                <div class="toolbar">
+                    <button onclick="formatText('bold')">B</button>
+                    <button onclick="formatText('italic')">I</button>
+                    <button onclick="formatText('underline')">U</button>
+                    <button onclick="formatText('heading1')">H1</button>
+                    <button onclick="formatText('heading2')">H2</button>
+                    <button onclick="insertBullet()">•</button>
+                </div>
+                <div class="editor" contenteditable="true" id="editor">
+                    Start writing your blog post here...
+                </div>
+            </div>
+            <button onclick="saveDraft()">Save Draft</button>
+        </section>
+
+        <!-- Drafts Section -->
+        <section id="drafts" class="hidden">
+            <h2>Your Drafts</h2>
+            <ul id="draftList">
+                <!-- Drafts will appear here -->
+            </ul>
+        </section>
+
+        <!-- Idea Jotting Tool -->
+        <section id="ideas" class="hidden">
+            <h2>Jot Down Your Ideas</h2>
+            <textarea id="ideaBox" placeholder="Write down your ideas..."></textarea>
+            <button onclick="saveIdea()">Save Idea</button>
+            <ul id="ideaList">
+                <!-- Saved Ideas -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 My Blog. All Rights Reserved.</p>
+    </footer>
+
+    <script src="./first.js"></script>
+</body>
+</html>
